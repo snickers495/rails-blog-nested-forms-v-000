@@ -20,7 +20,12 @@
   </div>
 
   <div class="field">
-    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %><br>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name {include_blank: true} %><br>
+    Or create your own:
+    <%= f.fields_for :tags, post.tags.build do |tags_attributes| %>
+      <%= tags_attributes.text_field :name %>
+    <% end %>
+    
   </div>
 
   <div class="actions">
